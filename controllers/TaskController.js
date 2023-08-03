@@ -119,6 +119,7 @@ module.exports.GetAllTask = async (req, res) => {
         success: true,
         message: "No tasks found for the user.",
         error: null,
+        tasks: [],
       });
     }
     return res.json({
