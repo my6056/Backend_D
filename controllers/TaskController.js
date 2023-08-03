@@ -218,3 +218,51 @@ module.exports.DeleteTask = async (req, res) => {
     });
   }
 };
+
+module.exports.CompleteTask = async (req, res) => {
+  const { taskId } = req.params;
+  try {
+    const existingTask = await TaskModel.findById(taskId);
+    if (!existingTask) {
+      return res.json({ success: false, message: "Task not found." });
+    }
+
+    const taskTitle = existingTask.title;
+    const taskDescription = existingTask.description;
+    const taskDueDate = existingTask.dueDate;
+    const completeStatus = true;
+    const updateData = {
+      title: taskTitle,
+      description: taskDescription,
+      dueDate: taskDueDate,
+      completed: completeStatus,
+    };
+
+    // Update the task with the new complete status and existing values
+    const updatedTask = await TaskModel.findByIdAndUpdate(taskId, updateData, {
+      new: true,
+    });
+    if (!updatedTask) {
+      return res.json({
+        success: false,
+        message: "Error In Task Complete",
+        tasks: [],
+      });
+    }
+    // Respond with the updated task
+    return res.json({
+      success: true,
+      message: "Task updated successfully.",
+      tasks: updatedTask,
+    });
+  } catch (error) {
+    return res.json({
+      success: false,
+      errors: error.message,
+      message: "Inernal Server Error !",
+    });
+  }
+};
+
+
+
