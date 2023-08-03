@@ -47,7 +47,7 @@ module.exports.CreateTask = async (req, res) => {
       title,
       description,
       dueDate: parsedDueDate,
-      completed: false,
+      completed: "pending",
       user: userId,
     });
     // Save the new task to the database
@@ -221,7 +221,7 @@ module.exports.DeleteTask = async (req, res) => {
 
 module.exports.CompleteTask = async (req, res) => {
   const { taskId } = req.params;
-   const completeStatus = true;
+   const completeStatus = req.body;
   try {
     const existingTask = await TaskModel.findById(taskId);
     if (!existingTask) {
