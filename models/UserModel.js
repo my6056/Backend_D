@@ -21,7 +21,9 @@ const UserSchmea = new Schema(
       require: true,
       minLength: 6,
     },
+    tasks: [{ type: Schema.Types.ObjectId, ref: "TaskModel" }],
   },
+   
   { timestamps: true }
 );
 
