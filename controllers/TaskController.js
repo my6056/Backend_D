@@ -221,7 +221,7 @@ module.exports.DeleteTask = async (req, res) => {
 
 module.exports.CompleteTask = async (req, res) => {
   const { taskId } = req.params;
-   const completeStatus = req.body;
+   const completeStatus = "completed";
   try {
     const existingTask = await TaskModel.findById(taskId);
     if (!existingTask) {
