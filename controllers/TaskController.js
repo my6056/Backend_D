@@ -105,7 +105,7 @@ module.exports.GetAllTask = async (req, res) => {
 
   try {
     const userTasks = await TaskModel.find({ user: userId }).populate(
-      "UserModel"
+      "user"
     );
     if (!userTasks) {
       return res.json({
