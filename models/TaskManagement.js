@@ -15,8 +15,8 @@ const taskSchema = new Schema({
     required: true,
   },
   completed: {
-    type: Boolean,
-    default: false,
+    type: String,
+    default: "pending",
   },
   user: {
     type: Schema.Types.ObjectId,
