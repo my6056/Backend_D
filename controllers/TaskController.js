@@ -118,14 +118,13 @@ module.exports.GetAllTask = async (req, res) => {
       return res.json({
         success: true,
         message: "No tasks found for the user.",
-        data: [],
         error: null,
       });
     }
     return res.json({
       success: true,
       message: "Tasks retrieved successfully.",
-      data: userTasks,
+      tasks: userTasks,
       error: null,
     });
   } catch (error) {
