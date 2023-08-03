@@ -183,7 +183,7 @@ module.exports.UpdateTask = async (req, res) => {
     // Return the updated task as a response
     return res.json({
       success: true,
-      data: updatedTask,
+      tasks: updatedTask,
       message: "Task Updated Successfully",
     });
   } catch (error) {
